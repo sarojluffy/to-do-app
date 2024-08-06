@@ -1,0 +1,19 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+const Navbar = () => {
+  return (
+    <>
+      <div className="nav_bar">
+        navbar
+        <div className="menu">
+          <Link to="/">
+            <div>home</div>
+          </Link>
+          <Link to="/add">
+            <div>add todo</div>
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+};
+export default Navbar;
