@@ -1,8 +1,11 @@
 import {
+  Link,
   useHistory,
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
+
 import Navbar from "../../components/navbar";
+
 // import { useParams } from "react-router-dom/cjs/react-router-dom";
 
 const DynamicViewpage = () => {
@@ -35,9 +38,20 @@ const DynamicViewpage = () => {
       >
         go back
       </button>
-      <button style={{ background: "red" }} onClick={deletetodo}>
-        DELETE
-      </button>
+      {localStorage.getItem("loggedd") ? (
+        <>
+          {" "}
+          <button style={{ background: "red" }} onClick={deletetodo}>
+            DELETE
+          </button>
+        </>
+      ) : (
+        <>
+          <p>
+            click on <Link to="/login">login!</Link> for more options{" "}
+          </p>
+        </>
+      )}
     </>
   );
 };

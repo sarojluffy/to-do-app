@@ -11,6 +11,9 @@ const Navbar = () => {
           <Link to="/add">
             <div>add todo</div>
           </Link>
+          <Link to="/login">
+            <div>login</div>
+          </Link>
         </div>
       </div>
     </>

@@ -1,10 +1,19 @@
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Navbar from "../../components/navbar";
 import { useRef } from "react";
+import Authcheck from "../middleaware/authcheck";
 
 const Addpage = () => {
   const refval = useRef();
   const histry = useHistory();
+  // if (localStorage.getItem("loggedd")) {
+  //   /*do nothing*/
+  // } else {
+  //   histry.replace("/login");
+  // }
+  Authcheck(); //auth function called
+  // localStorage.getItem("loggedd") ? (() => {})() : histry.replace("/login"); //this is an alternative
+  // !localStorage.getItem("loggedd") && histry.replace("/login");//this is an alternative
   const abc = (e) => {
     e.preventDefault();
     const P = JSON.parse(localStorage.getItem("key"));

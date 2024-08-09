@@ -20,13 +20,7 @@ const Routes = () => {
         <Route path="/home" component={Mainpage} exact></Route>
         {/* exact renders just this component without merging with other components */}
         <Route path="/add" exact>
-          {JSON.parse(localStorage.getItem("loggedd")) ? (
-            <>
-              <Addpage />
-            </>
-          ) : (
-            <Redirect to="/login" /> //redirects automatically
-          )}
+          <Addpage />
         </Route>
         {/* here the path is for components for our website , dont confuse with the other files and locations*/}
         {/* /add vaneko hamle diyeko path ho component lai */}
@@ -35,7 +29,7 @@ const Routes = () => {
           <DynamicViewpage /> {/* can be written thos way alternatively*/}
         </Route>
         <Route path="/login" component={Login}></Route>
-        <Route path="*" component={Notfound} exact />
+        <Route component={Notfound} exact />
         {/* defines a path for non existing  */}
       </Switch>
     </BrowserRouter>

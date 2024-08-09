@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import Navbar from "../../components/navbar";
 import { BsEye } from "react-icons/bs";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Navbar from "../../components/navbar";
 const Mainpage = () => {
+  // Authcheck(); //auth function called
   const his = useHistory();
   const xyz = JSON.parse(localStorage.getItem("key"));
   const DatafromLocalStorage = xyz ? xyz : [];
@@ -22,17 +22,27 @@ const Mainpage = () => {
       <Navbar />
 
       <div>
-        <div>
-          {DatafromLocalStorage.map((xyz, index) => (
-            <div className="todoLocalstorage " key={index}>
-              {xyz}
-              <Link to={`/view?id=${index}`}>
-                <BsEye size={"20px"} />
-              </Link>
+        {DatafromLocalStorage && DatafromLocalStorage.length > 0 ? (
+          <>
+            <div>
+              {DatafromLocalStorage.map((xyz, index) => (
+                <div className="todoLocalstorage " key={index}>
+                  {xyz}
+                  <Link to={`/view?id=${index}`}>
+                    <BsEye size={"20px"} />
+                  </Link>
+                </div>
+              ))}
+              <button onClick={del}>delete all </button>
             </div>
-          ))}
-          <button onClick={del}>delete all </button>
-        </div>
+          </>
+        ) : (
+          <>
+            <p>
+              nothing here . click <Link to="/add">here </Link>to add
+            </p>
+          </>
+        )}
       </div>
     </>
   );
