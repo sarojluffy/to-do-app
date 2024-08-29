@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom/cjs/react-router-dom";
-import { Route, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Navbar from "./navbar";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const ht = useHistory();
+  const navigate = useNavigate();
   //   if (localStorage.getItem("loggedd")) {
   //     <Mainpage />;
   //   } else {
@@ -21,7 +20,7 @@ const Login = () => {
             style={{ color: "red", cursor: "pointer" }}
             onClick={() => {
               localStorage.removeItem("loggedd");
-              ht.replace("/");
+              navigate("/", { replace: true });
             }}
           >
             logout
@@ -31,7 +30,7 @@ const Login = () => {
         <button
           onClick={() => {
             localStorage.setItem("loggedd", true);
-            ht.replace("/add");
+            navigate("/add", { replace: true });
           }}
         >
           Log in!
@@ -40,10 +39,12 @@ const Login = () => {
       <Link to="/login/simple">
         <button>click me for nested</button>
       </Link>
-
-      <Route path="/login/simple">
-        <div>this is an example of nested routing </div>
-      </Route>
+      <Routes>
+        <Route
+          path="/simple"
+          element={<div>this is an example of nested routing </div>}
+        />
+      </Routes>
     </>
   );
 };

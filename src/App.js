@@ -1,14 +1,10 @@
-import Routes from "./routes/Routes";
 import "./index.css";
-import {
-  BrowserRouter,
-  Switch,
-} from "react-router-dom/cjs/react-router-dom.min";
+import Routesa from "./routes/RoutesA";
 
 const App = () => {
   return (
     <>
-      <Routes />
+      <Routesa />
     </>
   );
 };

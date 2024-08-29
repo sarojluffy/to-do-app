@@ -1,10 +1,7 @@
-import {
-  Link,
-  useHistory,
-  useLocation,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useLocation } from "react-router-dom";
 
 import Navbar from "../../components/navbar";
+import { useNavigate } from "react-router-dom";
 
 // import { useParams } from "react-router-dom/cjs/react-router-dom";
 
@@ -13,7 +10,7 @@ const DynamicViewpage = () => {
   const GetUrl = new URLSearchParams(Useloc.search); //parse the URL ,(more specific 'search')
   const GetID = GetUrl.get("id"); // gets the value of the key "id"
   console.log(Useloc);
-  const histy = useHistory();
+  const navigate = useNavigate();
   //   const getparam = useParams(); //gets the whole parameter object
   //   const ParamID = getparam.id; // get the id from the params
   const Localdata = JSON.parse(localStorage.getItem("key"))
@@ -24,7 +21,7 @@ const DynamicViewpage = () => {
   const deletetodo = () => {
     Localdata.splice(GetID, 1); // from the array position defined by GetID delete 1 element
     localStorage.setItem("key", JSON.stringify(Localdata));
-    histy.replace("/");
+    navigate("/", { replace: true });
   };
   return (
     <>
@@ -33,14 +30,13 @@ const DynamicViewpage = () => {
       <button
         className="gobackbutton"
         onClick={() => {
-          histy.push("/");
+          navigate("/");
         }}
       >
         go back
       </button>
       {localStorage.getItem("loggedd") ? (
         <>
-          {" "}
           <button style={{ background: "red" }} onClick={deletetodo}>
             DELETE
           </button>

@@ -1,9 +1,10 @@
 import { BsEye } from "react-icons/bs";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar";
+import { useNavigate } from "react-router-dom";
 const Mainpage = () => {
   // Authcheck(); //auth function called
-  const his = useHistory();
+  const navigate = useNavigate();
   const xyz = JSON.parse(localStorage.getItem("key"));
   const DatafromLocalStorage = xyz ? xyz : [];
 
@@ -15,7 +16,7 @@ const Mainpage = () => {
     localStorage.clear();
     DatafromLocalStorage.splice(0, DatafromLocalStorage.length);
     localStorage.setItem("key", JSON.stringify(DatafromLocalStorage));
-    his.replace("/");
+    navigate("/", { replace: true });
   };
   return (
     <>
@@ -29,6 +30,7 @@ const Mainpage = () => {
                 <div className="todoLocalstorage " key={index}>
                   {xyz}
                   <Link to={`/view?id=${index}`}>
+                    {/* back tick is used here , also later dynamic value is sent */}
                     <BsEye size={"20px"} />
                   </Link>
                 </div>

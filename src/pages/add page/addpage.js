@@ -1,17 +1,17 @@
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Navbar from "../../components/navbar";
 import { useRef } from "react";
 import Authcheck from "../middleaware/authcheck";
+import { useNavigate } from "react-router-dom";
 
 const Addpage = () => {
   const refval = useRef();
-  const histry = useHistory();
+  const navigate = useNavigate();
   // if (localStorage.getItem("loggedd")) {
   //   /*do nothing*/
   // } else {
   //   histry.replace("/login");
   // }
-  Authcheck(); //auth function called
+  Authcheck(); //auth function calle
   // localStorage.getItem("loggedd") ? (() => {})() : histry.replace("/login"); //this is an alternative
   // !localStorage.getItem("loggedd") && histry.replace("/login");//this is an alternative
   const abc = (e) => {
@@ -20,7 +20,7 @@ const Addpage = () => {
     const todo_array = P ? P : [];
     const todo_newdata = refval.current.value;
     localStorage.setItem("key", JSON.stringify([...todo_array, todo_newdata]));
-    histry.push("/");
+    navigate("/");
   };
 
   /* const abc = (e) => {
@@ -42,13 +42,6 @@ const Addpage = () => {
           <input type="text" ref={refval}></input>
           <button>add to do </button>
         </form>
-
-        <h3>to do list </h3>
-        <div className="todo_container">
-          <div>todo 1 </div>
-          <div>todo 2</div>
-          <div>todo 3</div>
-        </div>
       </div>
     </>
   );
